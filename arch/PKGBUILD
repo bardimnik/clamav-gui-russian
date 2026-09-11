@@ -1,0 +1,39 @@
+# Maintainer: Jörg Macedo da Costa Zopes <wusel1007@gmail.com>
+# Package: clamav-gui — Graphical Interface for ClamAV Antivirus
+#
+# AUR build:  cd arch && makepkg -si
+# Local build: ./arch/build-local.sh
+
+pkgname=clamav-gui
+pkgver=1.4.6
+pkgrel=1
+pkgdesc="Graphical Interface for ClamAV Antivirus"
+arch=(x86_64 armv7h)
+url="https://github.com/wusel1007/clamav-gui"
+license=(GPL-3.0-or-later)
+
+depends=(
+    clamav
+    qt6-base
+)
+makedepends=(
+    cmake
+)
+source=("https://github.com/wusel1007/clamav-gui/archive/refs/tags/v${pkgver}.tar.gz")
+sha256sums=('SKIP')
+
+build() {
+    cmake -S "$srcdir/${pkgname}-${pkgver}" \
+        -B "$srcdir/${pkgname}-${pkgver}/build" \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_INSTALL_PREFIX=/ \
+        -DBUILD_TESTING=OFF
+
+    cmake --build "$srcdir/${pkgname}-${pkgver}/build" -j"$(nproc)"
+}
+
+package() {
+    # makepkg sets DESTDIR automatically; use it for staged install
+    cmake --install "$srcdir/${pkgname}-${pkgver}/build" \
+        --prefix "$DESTDIR"
+}

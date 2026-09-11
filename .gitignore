@@ -1,0 +1,10 @@
+build
+result
+.vscode/c_cpp_properties.json
+
+*.user
+.vscode/settings.json
+Testing
+wRimOH.json
+
+.qtcreator/clamav-gui.pro.user.a26d2e7

@@ -1,0 +1,14 @@
+{
+  "target": {
+    "type": "local"
+  },
+  "effort": "medium",
+  "effortSource": "default",
+  "comment": {
+    "requested": false,
+    "effective": false
+  },
+  "extraTokens": [],
+  "unknownFlags": [],
+  "warnings": []
+}

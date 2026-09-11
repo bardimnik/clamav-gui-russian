@@ -1,0 +1,1070 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>includeExcludeOptions</class>
+ <widget class="QWidget" name="includeExcludeOptions">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>781</width>
+    <height>674</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_3">
+   <item row="0" column="0">
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>761</width>
+        <height>654</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <item row="4" column="0" colspan="2">
+        <widget class="QFrame" name="frame">
+         <property name="frameShape">
+          <enum>QFrame::Panel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Sunken</enum>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="0" column="0">
+           <widget class="QCheckBox" name="enablePUACheckBox">
+            <property name="text">
+             <string>Use Signatures for Potentially Unwanted Applications</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QFrame" name="PUAFrame">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QGridLayout" name="gridLayout">
+             <item row="5" column="1">
+              <widget class="QRadioButton" name="loadPUAToolRadioButton">
+               <property name="text">
+                <string>Load PUA sigs of category Tool</string>
+               </property>
+               <property name="autoExclusive">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QRadioButton" name="loadPUAAndrRadioButton">
+               <property name="text">
+                <string>Load PUA sigs of category Andr</string>
+               </property>
+               <property name="autoExclusive">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QRadioButton" name="loadPUANetToolRadioButton">
+               <property name="text">
+                <string>Load PUA sigs of category NetTool</string>
+               </property>
+               <property name="checked">
+                <bool>false</bool>
+               </property>
+               <property name="autoExclusive">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="0">
+              <widget class="QRadioButton" name="loadPUAIRCRadioButton">
+               <property name="text">
+                <string>Load PUA sigs of category IRC</string>
+               </property>
+               <property name="autoExclusive">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QRadioButton" name="loadPUAPWToolRadioButton">
+               <property name="text">
+                <string>Load PUA sigs of category PWTool</string>
+               </property>
+               <property name="autoExclusive">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QRadioButton" name="loadPUAScriptRadioButton">
+               <property name="text">
+                <string>Load PUA sigs of category Script</string>
+               </property>
+               <property name="autoExclusive">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="0">
+              <widget class="QRadioButton" name="loadPUARATRadioButton">
+               <property name="text">
+                <string>Load PUA sigs of category RAT</string>
+               </property>
+               <property name="autoExclusive">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="0">
+              <widget class="QRadioButton" name="loadPUAP2PRadioButton">
+               <property name="text">
+                <string>Load PUA sigs of category P2P</string>
+               </property>
+               <property name="autoExclusive">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="1">
+              <widget class="QRadioButton" name="loadPUAUnixRadioButton">
+               <property name="text">
+                <string>Load PUA sigs of category Unix</string>
+               </property>
+               <property name="autoExclusive">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="0">
+              <widget class="QRadioButton" name="loadPUANetToolSpyRadioButton">
+               <property name="text">
+                <string>Load PUA sigs of category NetToolSpy</string>
+               </property>
+               <property name="autoExclusive">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QRadioButton" name="loadPUAPackedRadioButon">
+               <property name="text">
+                <string>Load PUA sigs of category Packed</string>
+               </property>
+               <property name="autoExclusive">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="QRadioButton" name="loadPUAJavaRadioButton">
+               <property name="text">
+                <string>Load PUA sigs of category Java</string>
+               </property>
+               <property name="autoExclusive">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="1">
+              <widget class="QRadioButton" name="loadPUAOsxRadioButton">
+               <property name="text">
+                <string>Load PUA sigs of category Osx</string>
+               </property>
+               <property name="autoExclusive">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="1">
+              <widget class="QRadioButton" name="loadPUAWinRadioButton">
+               <property name="text">
+                <string>Load PUA sigs of category Win</string>
+               </property>
+               <property name="autoExclusive">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="0">
+              <widget class="QRadioButton" name="loadPUAServerRadioButton">
+               <property name="text">
+                <string>Load PUA sigs of category Server</string>
+               </property>
+               <property name="autoExclusive">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="9" column="0" colspan="2">
+              <spacer name="verticalSpacer">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="2">
+        <widget class="QFrame" name="frame02">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <property name="topMargin">
+           <number>2</number>
+          </property>
+          <property name="bottomMargin">
+           <number>2</number>
+          </property>
+          <item>
+           <widget class="QCheckBox" name="dontScanDirCheckBox">
+            <property name="text">
+             <string>Don't scan directories matching REGEX</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="dontScanDirLineEdit"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="0" colspan="2">
+        <widget class="QFrame" name="frame01">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <property name="topMargin">
+           <number>2</number>
+          </property>
+          <property name="bottomMargin">
+           <number>2</number>
+          </property>
+          <item>
+           <widget class="QCheckBox" name="dontScanFileNameCheckBox">
+            <property name="text">
+             <string>Don't scan file names matching REGEX</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="dontScanFileNameLineEdit"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="3" column="0" colspan="2">
+        <widget class="QFrame" name="frame04">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <property name="topMargin">
+           <number>2</number>
+          </property>
+          <property name="bottomMargin">
+           <number>2</number>
+          </property>
+          <item>
+           <widget class="QCheckBox" name="onlyScanDirCheckBox">
+            <property name="text">
+             <string>Only scan directories matching REGEX</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="onlyScanDirLineEdit"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="2">
+        <widget class="QFrame" name="frame03">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <property name="topMargin">
+           <number>2</number>
+          </property>
+          <property name="bottomMargin">
+           <number>2</number>
+          </property>
+          <item>
+           <widget class="QCheckBox" name="onlyScanFileNameCheckBox">
+            <property name="text">
+             <string>Only scan file names matching REGEX</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="onlyScanFileNameLineEdit"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>enablePUACheckBox</sender>
+   <signal>clicked()</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_enablePUACheckBoxClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>52</x>
+     <y>187</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>5</x>
+     <y>166</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>dontScanFileNameLineEdit</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_writeSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>600</x>
+     <y>33</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>662</x>
+     <y>33</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>dontScanDirLineEdit</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_writeSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>523</x>
+     <y>60</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>665</x>
+     <y>79</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>onlyScanFileNameLineEdit</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_writeSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>752</x>
+     <y>98</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>666</x>
+     <y>110</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>onlyScanDirLineEdit</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_writeSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>752</x>
+     <y>134</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>665</x>
+     <y>150</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>loadPUAPackedRadioButon</sender>
+   <signal>clicked()</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_writeSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>387</x>
+     <y>236</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>665</x>
+     <y>211</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>loadPUAPWToolRadioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_writeSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>387</x>
+     <y>266</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>663</x>
+     <y>262</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>loadPUANetToolRadioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_writeSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>387</x>
+     <y>296</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>666</x>
+     <y>292</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>loadPUAP2PRadioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_writeSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>387</x>
+     <y>326</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>664</x>
+     <y>338</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>loadPUAIRCRadioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_writeSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>387</x>
+     <y>356</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>664</x>
+     <y>376</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>loadPUARATRadioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_writeSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>387</x>
+     <y>386</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>666</x>
+     <y>323</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>loadPUANetToolSpyRadioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_writeSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>387</x>
+     <y>416</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>666</x>
+     <y>412</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>loadPUAServerRadioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_writeSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>387</x>
+     <y>446</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>667</x>
+     <y>440</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>loadPUAScriptRadioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_writeSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>741</x>
+     <y>236</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>665</x>
+     <y>470</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>loadPUAAndrRadioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_writeSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>741</x>
+     <y>266</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>775</x>
+     <y>482</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>loadPUAJavaRadioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_writeSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>741</x>
+     <y>296</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>776</x>
+     <y>527</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>loadPUAOsxRadioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_writeSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>741</x>
+     <y>326</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>775</x>
+     <y>560</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>loadPUAToolRadioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_writeSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>741</x>
+     <y>356</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>774</x>
+     <y>599</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>loadPUAUnixRadioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_writeSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>741</x>
+     <y>386</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>777</x>
+     <y>631</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>loadPUAWinRadioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_writeSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>741</x>
+     <y>416</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>761</x>
+     <y>667</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>dontScanFileNameCheckBox</sender>
+   <signal>clicked()</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_highlightSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>83</x>
+     <y>34</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>2</x>
+     <y>30</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>dontScanFileNameCheckBox</sender>
+   <signal>clicked()</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_writeSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>100</x>
+     <y>38</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1</x>
+     <y>67</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>dontScanDirCheckBox</sender>
+   <signal>clicked()</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_writeSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>119</x>
+     <y>71</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>3</x>
+     <y>101</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>dontScanDirCheckBox</sender>
+   <signal>clicked()</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_highlightSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>189</x>
+     <y>75</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>0</x>
+     <y>140</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>onlyScanFileNameCheckBox</sender>
+   <signal>clicked()</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_writeSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>82</x>
+     <y>110</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>2</x>
+     <y>134</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>onlyScanFileNameCheckBox</sender>
+   <signal>clicked()</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_highlightSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>224</x>
+     <y>109</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>5</x>
+     <y>201</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>onlyScanDirCheckBox</sender>
+   <signal>clicked()</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_writeSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>109</x>
+     <y>147</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>5</x>
+     <y>237</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>onlyScanDirCheckBox</sender>
+   <signal>clicked()</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_highlightSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>170</x>
+     <y>150</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>6</x>
+     <y>279</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>loadPUAPackedRadioButon</sender>
+   <signal>clicked()</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_highlightSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>83</x>
+     <y>224</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>5</x>
+     <y>319</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>loadPUAPWToolRadioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_highlightSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>126</x>
+     <y>252</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>3</x>
+     <y>354</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>loadPUANetToolRadioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_highlightSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>161</x>
+     <y>284</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>5</x>
+     <y>393</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>loadPUAP2PRadioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_highlightSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>196</x>
+     <y>308</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>3</x>
+     <y>436</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>loadPUAIRCRadioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_highlightSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>223</x>
+     <y>345</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>5</x>
+     <y>471</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>loadPUARATRadioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_highlightSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>266</x>
+     <y>376</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>3</x>
+     <y>510</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>loadPUANetToolSpyRadioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_highlightSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>282</x>
+     <y>408</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>5</x>
+     <y>547</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>loadPUAServerRadioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_highlightSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>299</x>
+     <y>437</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>4</x>
+     <y>582</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>loadPUAScriptRadioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_highlightSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>490</x>
+     <y>228</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>2</x>
+     <y>621</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>loadPUAAndrRadioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_highlightSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>547</x>
+     <y>253</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>0</x>
+     <y>659</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>loadPUAJavaRadioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_highlightSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>477</x>
+     <y>282</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>7</x>
+     <y>310</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>loadPUAOsxRadioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_highlightSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>445</x>
+     <y>315</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>3</x>
+     <y>380</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>loadPUAToolRadioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_highlightSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>432</x>
+     <y>344</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>3</x>
+     <y>423</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>loadPUAUnixRadioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_highlightSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>503</x>
+     <y>380</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>6</x>
+     <y>466</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>loadPUAWinRadioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>includeExcludeOptions</receiver>
+   <slot>slot_highlightSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>455</x>
+     <y>403</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>7</x>
+     <y>536</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>slot_enablePUACheckBoxClicked()</slot>
+  <slot>slot_writeSettings()</slot>
+  <slot>slot_highlightSettings()</slot>
+ </slots>
+</ui>

@@ -1,0 +1,49 @@
+Thank you for downloading ClamAV-GUI:
+ a tool that simplifies virus scanning on Linux.
+
+ - This application provides a graphical user interface for clamav and
+   freshclam with an integrated service menu for Konqueror/Dolphin
+   to scan files directly from your file manager.
+
+Requirements:
+ - clamav
+ - freshclam
+
+  *For Ubuntu: $ sudo apt install clamav clamav-freshclam
+
+  fixed
+- correct dependencies for Ubuntu
+
+Installation:
+ - If you use Ubuntu, you can use the available DEB package
+ - If you use OpenSUSE, you can use the available RPM package
+ - Alternatively, you can build from source
+
+Build Instructions:
+ It should build equaly in an QT5 and a QT6 environment. No changes to the code are required. (Ex. Ubuntu 20.04 - see below)
+
+ - Extract ClamAV-GUI-*.tar.gz
+   Example: $ tar -xf ClamAV-GUI-*.tar.gz
+ - Enter the generated folder
+   Example: $ cd ClamAV-GUI-x.x.x
+   *For Ubuntu <= 20.04
+    also change ( Qt::endl; --> endl; ) in file "setupfilehandler.cpp"
+ - QMake: Build the package as root with 'qmake', 'make', and finally 'make install'
+   Example: $ qmake && make && sudo make install
+   (qmake could also be: qmake6 or qmake-qt5.)
+ - CMake: Build the package with 'cmake'and make'
+   Example: $ cmake . && make
+ - For a RPM based system do: cpack -G RPM
+ - For a DEB based system do: cpack -G DEB
+ - Find the respective RPM or DEB package in the build folder and install it with your package manager.
+
+
+Questions / Suggestions:
+ - Report any problems or suggestions to
+   Joerg Macedo da Costa Zopes <joerg.zopes@gmx.de>
+
+Have fun with your virus-free machine.
+
+INFO - Changes using clamav 1.0.7 or 1.4.1
+Version 1.0.7 and 1.4.1 of clamav have an issue with "freshclam". Freshclam needs the file "ca-bundle.crt" in the folder "/etc/pki/tls/certs" and neither the folder nor the file exists in Open SuSE.
+On Open SuSE I found the file "ca-bundle.pem" in the folder "/etc/ssl" and a softlink to "/etc/pki/tls/certs/ca-bundle.crt" solves the problem.

@@ -1,0 +1,319 @@
+/************************************************************************
+ * Setup Tab of the applicatino
+ ************************************************************************/
+#include "setuptab.h"
+#define css_red "background-color:red;color:white"
+#define css_yellow "background-color:yellow;color:black"
+#define css_green "background-color:green;color:yellow"
+#define css_mono "background-color:#404040;color:white"
+
+setupTab::setupTab(QWidget* parent, setupFileHandler* setupFile) : QWidget(parent), m_setupFile(setupFile)
+{
+    m_ui.setupUi(this);
+    m_suppressMessage = true;  // verhindert, dass bei der Initialisierung der Sprachauswahl die Warnmeldung kommt.
+
+    m_monochrome = false;
+    if (m_setupFile->keywordExists("Setup", "DisableLogHighlighter") == true)
+        m_monochrome = m_setupFile->getSectionBoolValue("Setup", "DisableLogHighlighter");
+
+    if (m_setupFile->keywordExists("Setup", "WindowState") == true)
+    {
+        if (m_setupFile->getSectionValue("Setup", "WindowState") == "minimized")
+            m_ui.windowStateComboBox->setCurrentIndex(1);
+        else
+            m_ui.windowStateComboBox->setCurrentIndex(0);
+    }
+
+    if (m_setupFile->keywordExists("Clamd", "ClamdScanMultithreading") == true)
+        m_ui.clamdscanComboBox->setCurrentIndex(m_setupFile->getSectionIntValue("Clamd", "ClamdScanMultithreading"));
+    else
+        m_setupFile->setSectionValue("Clamd", "ClamdScanMultithreading", 0);
+
+    if (m_setupFile->keywordExists("Setup", "DisableLogHighlighter") == true)
+        m_ui.logHighlighterCheckBox->setChecked(m_setupFile->getSectionBoolValue("Setup", "DisableLogHighlighter"));
+    else
+        m_setupFile->setSectionValue("Setup", "DisableLogHighlighter", false);
+
+    manager = new QNetworkAccessManager(this);
+    connect(manager,SIGNAL(finished(QNetworkReply*)),SLOT(slot_requestFinished(QNetworkReply*)));
+    manager->get(QNetworkRequest(QUrl("https://www.clamav.net/download")));
+
+    findTranslation();
+    slot_updateSystemInfo();
+    m_suppressMessage = false;
+}
+
+QString setupTab::checkmonochrome(QString color)
+{
+    QString rc = "";
+    if (m_monochrome == true)
+        rc = css_mono;
+    else {
+        if (color == "red")
+            rc = css_red;
+        if (color == "yellow")
+            rc = css_yellow;
+        if (color == "green")
+            rc = css_green;
+    }
+
+    return rc;
+}
+
+void setupTab::slot_updateSystemInfo()
+{
+    QString systemInfo;
+    if (m_setupFile->keywordExists("Clamd", "ClamdLocation") == true)
+        m_ui.clamdPath->setText(m_setupFile->getSectionValue("Clamd", "ClamdLocation").replace("\n", ""));
+    if (m_setupFile->keywordExists("Clamd", "ClamonaccLocation") == true)
+        m_ui.clamonaccPath->setText(m_setupFile->getSectionValue("Clamd", "ClamonaccLocation").replace("\n", ""));
+    if (m_setupFile->keywordExists("FreshclamSettings", "FreshclamLocation") == true)
+        m_ui.freshclamPath->setText(m_setupFile->getSectionValue("FreshclamSettings", "FreshclamLocation").replace("\n", ""));
+
+    if (m_setupFile->sectionExists("Updater") == true)
+    {
+        m_ui.databasePath->setText(m_setupFile->getSectionValue("Directories", "LoadSupportedDBFiles")
+                                       .mid(m_setupFile->getSectionValue("Directories", "LoadSupportedDBFiles").indexOf("|") + 1));
+        m_ui.databaseLastUpdate->setText(m_setupFile->getSectionValue("Updater", "LastUpdate"));
+        m_ui.databaseMainFile->setText(m_setupFile->getSectionValue("Updater", "MainVersion"));
+        m_ui.databaseDailyFile->setText(m_setupFile->getSectionValue("Updater", "DailyVersion"));
+        m_ui.databaseBytecodeFile->setText(m_setupFile->getSectionValue("Updater", "BytecodeVersion"));
+
+        QString value = m_setupFile->getSectionValue("Updater", "DailyVersion");
+        QString scannerVersion = m_setupFile->getSectionValue("Updater", "Version");
+        scannerVersion = scannerVersion.replace("Scanner ", "");
+        value = value.mid(value.indexOf(" "), value.indexOf(",") - value.indexOf(" "));
+        systemInfo = "<div style='font-size:12px;line-height:20px;'><b>" + tr("Scanner:") + " <font color='navy'>" + scannerVersion +
+                     "</font><br>" + tr("Database:") + " <font color='navy'>" + value + "</font><br>";
+        systemInfo += tr("Date:") + " <font color='navy'>" + m_setupFile->getSectionValue("Updater", "LastUpdate") + "</font></b></div>";
+        emit sendSystemInfo(systemInfo);
+    }
+
+    if (m_setupFile->keywordExists("Clamd", "ClamonaccPid") == true)
+    {
+        m_ui.clamonaccPID->setText(m_setupFile->getSectionValue("Clamd", "ClamonaccPid"));
+        if (m_setupFile->getSectionValue("Clamd", "ClamonaccPid") == "n/a")
+        {
+            m_ui.clamonaccActivityLabel->setPixmap(QPixmap(":/icons/icons/gifs/activity.gif"));
+            QString status2 = m_setupFile->getSectionValue("Clamd", "Status2");
+            if (status2 == "starting up ...")
+                m_ui.clamonaccStatus->setText(tr("starting up ..."));
+            else if (status2 == "shutting down ...")
+                m_ui.clamonaccStatus->setText(tr("shutting down ..."));
+            else if (status2 == "is running")
+                m_ui.clamonaccStatus->setText(tr("is running"));
+            else
+                m_ui.clamonaccStatus->setText(status2);
+            m_ui.clamonaccStatus->setStyleSheet(checkmonochrome("red"));
+        }
+        else {
+            m_ui.clamonaccActivityLabel->setMovie(new QMovie(":/icons/icons/gifs/activity.gif"));
+            m_ui.clamonaccActivityLabel->movie()->start();
+            m_ui.clamonaccStatus->setText(tr("is running"));
+            m_ui.clamonaccStatus->setStyleSheet(checkmonochrome("green"));
+        }
+    }
+
+    if (m_setupFile->keywordExists("Clamd", "ClamdPid") == true)
+    {
+        m_ui.clamdPID->setText(m_setupFile->getSectionValue("Clamd", "ClamdPid"));
+        if (m_setupFile->getSectionValue("Clamd", "ClamdPid") == "n/a")
+        {
+            m_ui.clamdActivityLabel->setPixmap(QPixmap(":/icons/icons/gifs/activity.gif"));
+            QString message = m_setupFile->getSectionValue("Clamd", "Status");
+            if ((message == "starting up ...") || (message == "shutting down ..."))
+            {
+                m_ui.clamdStatus->setStyleSheet(checkmonochrome("yellow"));
+                if (message == "starting up ...")
+                    m_ui.clamdStatus->setText(tr("starting up ..."));
+                else
+                    m_ui.clamdStatus->setText(tr("shutting down ..."));
+                if (m_setupFile->getSectionValue("Clamd", "Status2") != "n/a")
+                {
+                    m_ui.clamonaccStatus->setStyleSheet(checkmonochrome("yellow"));
+                    if (message == "starting up ...")
+                        m_ui.clamonaccStatus->setText(tr("starting up ..."));
+                    else
+                        m_ui.clamonaccStatus->setText(tr("shutting down ..."));
+                }
+            }
+            if (message == "is running")
+            {
+                m_ui.clamdStatus->setStyleSheet(checkmonochrome("green"));
+                m_ui.clamdStatus->setText(tr("is running"));
+                if (m_setupFile->getSectionValue("Clamd", "Status2") != "is running")
+                {
+                    m_ui.clamonaccStatus->setStyleSheet(checkmonochrome("green"));
+                    m_ui.clamonaccStatus->setText(tr("is running"));
+                }
+            }
+            if ((message == "shut down") || (message == "not running"))
+            {
+                m_ui.clamdStatus->setStyleSheet(checkmonochrome("red"));
+                m_ui.clamdStatus->setText(tr("is down"));
+                m_ui.clamonaccStatus->setStyleSheet(checkmonochrome("red"));
+                m_ui.clamonaccStatus->setText(tr("is down"));
+            }
+        }
+        else {
+            m_ui.clamdActivityLabel->setMovie(new QMovie(":/icons/icons/gifs/activity.gif"));
+            m_ui.clamdActivityLabel->movie()->start();
+            m_ui.clamdStatus->setText(tr("is running"));
+            m_ui.clamdStatus->setStyleSheet(checkmonochrome("green"));
+        }
+    }
+
+    if (m_setupFile->keywordExists("Freshclam", "Pid") == true)
+    {
+        m_ui.freshclamPID->setText(m_setupFile->getSectionValue("Freshclam", "Pid"));
+        if (m_setupFile->getSectionValue("Freshclam", "Pid") == "n/a")
+        {
+            m_ui.freshclamActivityLabel->setPixmap(QPixmap(":/icons/icons/gifs/activity.gif"));
+            m_ui.freshclamStatus->setText(tr("is down"));
+            m_ui.freshclamStatus->setStyleSheet(checkmonochrome("red"));
+        }
+        else {
+            m_ui.freshclamActivityLabel->setMovie(new QMovie(":/icons/icons/gifs/activity.gif"));
+            m_ui.freshclamActivityLabel->movie()->start();
+            m_ui.freshclamStatus->setText(tr("is running"));
+            m_ui.freshclamStatus->setStyleSheet(checkmonochrome("green"));
+        }
+    }
+}
+
+void setupTab::slot_clamdButtonClicked()
+{
+    emit switchActiveTab(6);
+}
+
+void setupTab::slot_freshclamButtonClicked()
+{
+    emit switchActiveTab(5);
+}
+
+void setupTab::slot_clamdscanComboBoxClicked()
+{
+    m_setupFile->setSectionValue("Clamd", "ClamdScanMultithreading", m_ui.clamdscanComboBox->currentIndex());
+}
+
+void setupTab::slot_logHightlighterCheckBoxClicked()
+{
+    m_setupFile->setSectionValue("Setup", "DisableLogHighlighter", m_ui.logHighlighterCheckBox->isChecked());
+    logHighlightingChanged(m_ui.logHighlighterCheckBox->isChecked());
+    m_monochrome = m_ui.logHighlighterCheckBox->isChecked();
+    slot_updateSystemInfo();
+}
+
+void setupTab::slot_requestFinished(QNetworkReply * reply)
+{
+    int pos, len, ltsCount = 0;
+    QString ltsVersions = "n/a";
+    m_ui.clamavInstalled->setText(m_setupFile->getSectionValue("Updater","Version").trimmed().replace("Scanner ",""));
+
+    if(reply->error())
+    {
+        qDebug() << "ERROR!";
+        qDebug() << reply->errorString();
+    }
+    else
+    {
+        QString replyString = reply->readAll();
+        QStringList lines = replyString.split("\n");
+        foreach(QString line, lines)
+        {
+            if (line.indexOf("<h3>") != -1)
+            {
+                pos = line.indexOf("<strong>") + 8;
+                len = line.indexOf("</strong>") - pos;
+                line = line.mid(pos,len);
+                m_ui.clamavLatest->setText(line);
+            }
+            if ((line.indexOf("<h4>") != -1) && (line.indexOf("LTS") != -1))
+            {
+                pos = line.indexOf("<h4>") + 4;
+                len = line.indexOf("<span") - pos;
+                line = line.mid(pos,len);
+                if (ltsCount == 0)
+                {
+                    ltsVersions = "(" + line + ")";
+                    ltsCount++;
+                }
+                else {
+                    ltsVersions = ltsVersions + " ,(" + line + ")";
+                }
+            }
+        }
+        m_ui.clamavLTS1->setText(ltsVersions);
+        if (m_ui.clamavInstalled->text() == m_ui.clamavLatest->text()) m_ui.clamavStatus->setText(tr("OK")); else m_ui.clamavStatus->setText(tr("Update available: ") + m_ui.clamavLatest->text());
+    }
+
+    reply->deleteLater();
+}
+
+void setupTab::findTranslation()
+{
+    int index = -1;
+    QString langhelper;
+    QString m_country = "";
+    QString translation_path;
+
+    translation_path = QCoreApplication::applicationDirPath() + "/../share/clamav-gui/";
+    if (!QDir(translation_path).exists())
+        translation_path = QCoreApplication::applicationDirPath() + "/";
+    if (isRunningInFlatpak())
+        translation_path = "/app/usr/share/clamav-gui/";
+    QDir directory(translation_path);
+    QStringList m_filelist = directory.entryList(QDir::Files);
+    foreach(QString m_file, m_filelist)
+    {
+        if (m_file.indexOf(".qm") != -1 && m_file.contains("gui"))
+        {
+            QString m_lang = m_file.mid(11,5);
+            QLocale locale(m_lang);
+
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 2, 0))
+            m_country = locale.territoryToString(locale.territory());
+#else
+            m_country = locale.countryToString(locale.country());
+#endif
+
+            m_ui.languageSelectComboBox->addItem(QIcon(translation_path + "languageicons/" + m_lang + ".png"),"[" + m_lang + "] " + m_country);        
+        }
+    }
+
+    if (m_setupFile->keywordExists("Setup", "language") == true)
+    {
+        langhelper = m_setupFile->getSectionValue("Setup", "language");
+        index = m_ui.languageSelectComboBox->findText(langhelper, Qt::MatchContains);
+        if (index == -1)
+            index = m_ui.languageSelectComboBox->findText("[en_GB]", Qt::MatchContains);
+        m_ui.languageSelectComboBox->setCurrentIndex(index);
+    }
+    else {
+        QString lang = QLocale::system().name();
+        index = m_ui.languageSelectComboBox->findText("[" + lang + "]", Qt::MatchContains);
+        if (index == -1)
+            index = m_ui.languageSelectComboBox->findText("[en_GB]", Qt::MatchContains);
+        m_ui.languageSelectComboBox->setCurrentIndex(index);
+    }
+}
+
+void setupTab::slot_clamonaccButtonClicked()
+{
+    emit switchActiveTab(6);
+}
+
+void setupTab::slot_selectedLanguageChanged()
+{
+    m_setupFile->setSectionValue("Setup", "language", m_ui.languageSelectComboBox->currentText().mid(0, 7));
+    if (m_suppressMessage == false)
+        QMessageBox::information(this, tr("Warning"), tr("You have to restart the application for changes to take effect!"));
+}
+
+void setupTab::slot_basicSettingsChanged()
+{
+    if (m_ui.windowStateComboBox->currentIndex() == 0)
+        m_setupFile->setSectionValue("Setup", "WindowState", "maximized");
+    if (m_ui.windowStateComboBox->currentIndex() == 1)
+        m_setupFile->setSectionValue("Setup", "WindowState", "minimized");
+}
